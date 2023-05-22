@@ -1,7 +1,4 @@
 <script lang="ts">
-  import Container from "../lib/Container.svelte";
-  import TodoContainer from "../lib/TodoContainer.svelte";
-  import TodoForm from "../lib/TodoForm.svelte";
   import type { Todo } from "../types";
 
   let id = 1;
@@ -16,6 +13,8 @@
       { id, name: todoName, desc: todoDescription, completed: false },
     ];
     id += 1;
+    todoName = "";
+    todoDescription = "";
   }
 </script>
 

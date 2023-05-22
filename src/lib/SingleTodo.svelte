@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Todo } from "../types";
-  import Check from "~/icons/mdi/check";
+  // import Check from "~/icons/mdi/check";
 
   export let todo: Todo;
 </script>
@@ -16,7 +16,7 @@
       <p class="empty-space" />
     {/if}
   </div>
-  <div><Check /></div>
+  <!-- <div><Check /></div> -->
 </li>
 
 <style>

@@ -37,13 +37,13 @@
 
   @media screen and (min-width: 1000px) {
     .grid-container {
-      grid-template-columns: 3fr 7fr;
+      grid-template-columns: 1fr 2fr;
       grid-gap: 3rem;
     }
 
     .main {
       margin: none;
-      width: auto;
+      
     }
   }
 </style>
