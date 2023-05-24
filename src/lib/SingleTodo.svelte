@@ -168,8 +168,6 @@
     .desc {
         font-size: 0.8rem;
         color: #a8a8a8;
-
-        max-width: 60%;
     }
 
     @media screen and (max-width: 400px) {

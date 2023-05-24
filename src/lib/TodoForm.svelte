@@ -7,7 +7,29 @@
 
     export let todos: Todo[];
 
+    // Button only goes red after the first submit
+    let error = true;
+    let playAnimation = false;
+    let animationPlayed = false;
+    let animationInProgress = false;
+    $: if (todoName.length === 0) {
+        error = true;
+    } else {
+        error = false;
+        animationPlayed = false;
+    }
+
+    let animationResetInterval: ReturnType<typeof setInterval>;
     function onSubmit() {
+        if (error) {
+            playAnimation = true;
+            animationPlayed = true;
+            animationResetInterval = setTimeout(() => {
+                playAnimation = false;
+            }, 400);
+
+            return;
+        }
         todos = [
             ...todos,
             { id, name: todoName, desc: todoDescription, completed: true },
@@ -28,7 +50,17 @@
             <p>Todo Description:</p>
             <input bind:value={todoDescription} />
         </label>
-        <button type="submit">Submit</button>
+        <button
+            on:animationstart={() => {
+                animationInProgress = true;
+            }}
+            on:animationend={() => {
+                animationInProgress = false;
+            }}
+            type="submit"
+            class:error-animation={playAnimation}
+            class:error={animationPlayed && error}>Submit</button
+        >
     </form>
 
     {#if todos.length > 0}
@@ -51,7 +83,6 @@
     form {
         display: flex;
         flex-direction: column;
-        overflow: hidden;
     }
 
     label {
@@ -68,10 +99,23 @@
         background-color: rgb(84, 109, 235);
         transition: all 200ms;
         margin-top: 0.8rem;
+        cursor: pointer;
+        user-select: none;
     }
 
     button:hover {
         background-color: rgb(101, 124, 240);
+    }
+
+    .error {
+        background-color: hsl(0, 70%, 64%);
+    }
+
+    .error:hover {
+        background-color: hsl(0, 70%, 54%);
+    }
+    .error-animation {
+        animation: shake 400ms ease-in-out;
     }
 
     .todo-tip {
@@ -81,6 +125,45 @@
     @media screen and (min-width: 1000px) {
         form {
             width: 260px;
+        }
+    }
+
+    /* @keyframes shake {
+        0% {
+            transform: translateX(0);
+        }
+        25% {
+            transform: translateX(-10px);
+        }
+        50% {
+            transform: translateX(10px);
+        }
+        75% {
+            transform: translateX(-5px);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    } */
+
+    @keyframes shake {
+        0% {
+            transform: translateX(30px);
+        }
+        20% {
+            transform: translateX(-30px);
+        }
+        40% {
+            transform: translateX(15px);
+        }
+        60% {
+            transform: translateX(-15px);
+        }
+        80% {
+            transform: translateX(8px);
+        }
+        100% {
+            transform: translateX(0px);
         }
     }
 

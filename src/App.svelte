@@ -11,6 +11,15 @@
     // Save todos to localstorage
     // Drag and drop kanban that you can move todos to, todos will originate in the list as is, an inbox of sorts
     // Setup github actions to deploy to github pages
+    // ChatGPT integration to parse todos and estimate due dates if any would be a pretty cool thing to do in the future
+    // Auth, pocketbase/supabase integration
+    // Conversion to sveltekit
+    // Streak / habit tracker
+    // Pomodoro timer
+    // Pomodoro timer integration with todos
+    // Pomodoro timer integration with streaks
+    // Very basic analytics
+    // So much potential here for a very cool app this will be fun
 </script>
 
 <svelte:head>
