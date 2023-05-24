@@ -115,6 +115,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        transition: all 0.2s ease-in-out;
     }
 
     .empty-space {
@@ -169,5 +170,13 @@
         color: #a8a8a8;
 
         max-width: 60%;
+    }
+
+    @media screen and (max-width: 400px) {
+        :root {
+            --svg-size: 20px;
+            --padding: 4px;
+            --checkbox-size: 20px;
+        }
     }
 </style>

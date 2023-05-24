@@ -5,6 +5,12 @@
     import type { Todo } from "./types";
 
     let todos: Todo[] = [];
+
+    // TODO
+    // Make button go red and shake side to side if no todo name has been entered
+    // Save todos to localstorage
+    // Drag and drop kanban that you can move todos to, todos will originate in the list as is, an inbox of sorts
+    // Setup github actions to deploy to github pages
 </script>
 
 <svelte:head>
@@ -52,6 +58,12 @@
             margin: none;
             width: fit-content;
             max-width: none;
+        }
+    }
+
+    @media screen and (max-width: 400px) {
+        .main {
+            width: 100%;
         }
     }
 </style>

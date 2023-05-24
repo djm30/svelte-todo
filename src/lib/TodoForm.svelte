@@ -16,10 +16,6 @@
         todoName = "";
         todoDescription = "";
     }
-
-    // TODO
-    // Make button go red and shake side to side if no todo name has been entered
-    // Save todos to localstorage
 </script>
 
 <div>
