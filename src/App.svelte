@@ -1,19 +1,36 @@
 <script lang="ts">
+    import { onMount } from "svelte";
     import Container from "./lib/Container.svelte";
     import TodoContainer from "./lib/TodoContainer.svelte";
     import TodoForm from "./lib/TodoForm.svelte";
     import type { Todo } from "./types";
 
     let todos: Todo[] = [];
+    let todosFetched = false;
+
+    $: {
+        if (todosFetched) {
+            console.log("Saving todos to localstorage");
+            localStorage.setItem("todos", JSON.stringify(todos));
+        }
+    }
+
+    onMount(() => {
+        let todosFromLocalStorage = localStorage.getItem("todos");
+        console.log(todosFromLocalStorage);
+        if (todosFromLocalStorage) {
+            todos = JSON.parse(todosFromLocalStorage) as Todo[];
+        }
+        todosFetched = true;
+    });
 
     // TODO
-    // Make button go red and shake side to side if no todo name has been entered
     // Save todos to localstorage
+    // Conversion to sveltekit
     // Drag and drop kanban that you can move todos to, todos will originate in the list as is, an inbox of sorts
     // Setup github actions to deploy to github pages
     // ChatGPT integration to parse todos and estimate due dates if any would be a pretty cool thing to do in the future
     // Auth, pocketbase/supabase integration
-    // Conversion to sveltekit
     // Streak / habit tracker
     // Pomodoro timer
     // Pomodoro timer integration with todos

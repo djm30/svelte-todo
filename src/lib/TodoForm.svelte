@@ -1,11 +1,13 @@
 <script lang="ts">
     import type { Todo } from "../types";
 
-    let id = 1;
+    export let todos: Todo[];
+
+    let id;
     let todoName = "";
     let todoDescription = "";
 
-    export let todos: Todo[];
+    $: id = todos.length + 1;
 
     // Button only goes red after the first submit
     let error = true;
