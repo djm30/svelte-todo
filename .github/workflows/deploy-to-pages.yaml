@@ -9,7 +9,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name Install and Svelte Build
+      - name: Install and Svelte Build
         run: |
           npm ci
           npm run build
