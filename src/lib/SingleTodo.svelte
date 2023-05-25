@@ -16,15 +16,10 @@
 
     function handleComplete() {
         dispatch("complete", todo.id);
-
-        // Instead of
-        // todo = { ...todo, completed: !todo.completed };
     }
 
     function handleDelete() {
         dispatch("delete", todo.id);
-        // Instead of
-        // todo = { ...todo, completed: !todo.completed };
     }
 </script>
 

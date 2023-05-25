@@ -5,9 +5,6 @@
 
     export let todos: Todo[];
 
-    // Instead of
-    // $: todos = todos.filter((todo) => !todo.completed);
-
     function handleComplete(event: CustomEvent<number>) {
         todos = todos.map((todo) => {
             if (todo.id === event.detail) {
