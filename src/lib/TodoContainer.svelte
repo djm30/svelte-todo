@@ -1,8 +1,12 @@
 <script lang="ts">
     import SingleTodo from "./SingleTodo.svelte";
     import type { Todo } from "../types";
+    import { flip } from "svelte/animate";
 
     export let todos: Todo[];
+
+    // Instead of
+    // $: todos = todos.filter((todo) => !todo.completed);
 
     function handleComplete(event: CustomEvent<number>) {
         todos = todos.map((todo) => {
@@ -20,11 +24,13 @@
 
 <ul>
     {#each todos as todo (todo.id)}
-        <SingleTodo
-            {todo}
-            on:complete={handleComplete}
-            on:delete={handleDelete}
-        />
+        <div animate:flip={{ duration: 200 }}>
+            <SingleTodo
+                {todo}
+                on:complete={handleComplete}
+                on:delete={handleDelete}
+            />
+        </div>
     {/each}
 </ul>
 

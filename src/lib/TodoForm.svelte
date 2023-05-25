@@ -3,17 +3,15 @@
 
     export let todos: Todo[];
 
-    let id;
     let todoName = "";
     let todoDescription = "";
-
-    $: id = todos.length + 1;
 
     // Button only goes red after the first submit
     let error = true;
     let playAnimation = false;
     let animationPlayed = false;
     let animationInProgress = false;
+
     $: if (todoName.length === 0) {
         error = true;
     } else {
@@ -32,6 +30,9 @@
 
             return;
         }
+
+        // Generate big random id
+        let id = Math.floor(Math.random() * 10e15);
         todos = [
             ...todos,
             { id, name: todoName, desc: todoDescription, completed: true },

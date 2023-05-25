@@ -1,12 +1,13 @@
 <script lang="ts">
     import type { Todo } from "../types";
     import { fly, fade } from "svelte/transition";
+    import { flip } from "svelte/animate";
     import { createEventDispatcher, onMount } from "svelte";
-    import Checkmark from "./Checkmark.svelte";
     import Close from "./Close.svelte";
+    import { longpress } from "./longpress";
+    let width: number;
 
     export let todo: Todo;
-    let width: number;
 
     let dispatch = createEventDispatcher();
 
@@ -15,16 +16,23 @@
 
     function handleComplete() {
         dispatch("complete", todo.id);
+
+        // Instead of
+        // todo = { ...todo, completed: !todo.completed };
     }
 
-    async function handleDelete() {
+    function handleDelete() {
         dispatch("delete", todo.id);
+        // Instead of
+        // todo = { ...todo, completed: !todo.completed };
     }
 </script>
 
 <li
     in:fly={{ y: 300, duration: 300 }}
     out:fly={{ x: 300, duration: 300 }}
+    use:longpress={{ duration: 500 }}
+    on:longpress={handleComplete}
     class="todo-container"
     bind:clientHeight={width}
 >
@@ -38,12 +46,6 @@
             <h3>
                 {todo.name}
             </h3>
-            <!-- {#if todo.desc}
-                <p>{todo.desc}</p>
-            {:else}
-                <p class="empty-space" />
-            {/if} -->
-
             <p class="desc">{todo.desc}</p>
         </div>
     </div>
@@ -58,6 +60,12 @@
         --svg-size: 26px;
         --padding: 6px;
         --checkbox-size: 24px;
+    }
+
+    p {
+        min-width: 100%;
+        width: 0;
+        word-wrap: break-word;
     }
 
     input {
@@ -163,6 +171,7 @@
         display: flex;
         gap: 12px;
         align-items: center;
+        flex-grow: 1;
     }
 
     .desc {
