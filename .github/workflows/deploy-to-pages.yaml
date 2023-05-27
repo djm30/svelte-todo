@@ -2,7 +2,7 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - master
+      - vanilla-svelte
 permissions:
   contents: write
 jobs:

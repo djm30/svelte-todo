@@ -60,7 +60,7 @@
     p {
         min-width: 100%;
         width: 0;
-        word-wrap: break-word;
+        /* word-wrap: break-word; */
     }
 
     input {
