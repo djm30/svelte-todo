@@ -4,7 +4,7 @@
     import { flip } from "svelte/animate";
     import { createEventDispatcher, onMount } from "svelte";
     import Close from "./Close.svelte";
-    import { longpress } from "./longpress";
+    import { longpress } from "../longpress";
     let width: number;
 
     export let todo: Todo;

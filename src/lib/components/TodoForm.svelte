@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { Todo } from "../types";
+    import type { Todo } from "$lib/types";
 
     export let todos: Todo[];
 

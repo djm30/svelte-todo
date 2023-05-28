@@ -7,8 +7,9 @@
 interface args {
     duration: number;
 }
-export function longpress(node, { duration = 500 }: args) {
-    let timer;
+
+export function longpress(node: Node, { duration = 500 }: args) {
+    let timer: ReturnType<typeof setTimeout>;
 
     const handleMousedown = () => {
         timer = setTimeout(() => {

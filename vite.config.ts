@@ -1,14 +1,6 @@
-// vite.config.js
-import { defineConfig } from "vite";
-import { svelte } from "@sveltejs/vite-plugin-svelte";
-import Icons from "unplugin-icons/vite";
+import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
 
 export default defineConfig({
-    base: "./",
-    plugins: [
-        svelte(),
-        Icons({
-            compiler: "svelte",
-        }),
-    ],
+	plugins: [sveltekit()]
 });
