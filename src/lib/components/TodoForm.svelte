@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { Todo } from "$lib/types";
 
-    export let todos: Todo[];
+    export let todos: Todo[]
 
     let todoName = "";
     let todoDescription = "";
@@ -35,7 +35,7 @@
         let id = Math.floor(Math.random() * 10e15);
         todos = [
             ...todos,
-            { id, name: todoName, desc: todoDescription, completed: true },
+            { id, name: todoName, desc: todoDescription, completed: 0, user_id: 1 },
         ];
         id += 1;
         todoName = "";

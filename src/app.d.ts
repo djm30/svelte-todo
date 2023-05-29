@@ -7,6 +7,21 @@ declare global {
 		// interface PageData {}
 		// interface Platform {}
 	}
+
+	// namespace svelte.JSX {
+	// 	interface HTMLAttributes<T> {
+	// 		onlongpress: () => void;
+	// 	}
+	// }
+
+
+	// Mr stackover flow said this one for sveltekit, not sure what the dif is 
+	namespace svelteHTML {
+		interface HTMLAttributes<T> {
+			"on:longpress"?: () => void;
+		}
+	}
+
 }
 
-export {};
+export { };

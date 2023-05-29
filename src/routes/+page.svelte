@@ -1,28 +1,17 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import "../app.css"
 	import TodoContainer from '$lib/components/TodoContainer.svelte';
 	import TodoForm from '$lib/components/TodoForm.svelte';
+	import type { PageData } from './$types';
 	import type { Todo } from '$lib/types';
-
-	let todos: Todo[] = [];
-	let todosFetched = false;
-
-	$: if (todosFetched) localStorage.setItem('todos', JSON.stringify(todos));
-
-	onMount(() => {
-		let todosFromLocalStorage = localStorage.getItem('todos');
-		if (todosFromLocalStorage) {
-			todos = JSON.parse(todosFromLocalStorage) as Todo[];
-		}
-		todosFetched = true;
-	});
+	import "../app.css"
+	
+	export let data: PageData;
+	let todos: Todo[] = data.todos;
 </script>
 
 <svelte:head>
-	<title>Hello Todo</title>
+	<title>{data.title}</title>
 	<meta name="robots" content="noindex nofollow" />
-	<html lang="en" />
 </svelte:head>
 
 <main class="main">

@@ -1,6 +1,3 @@
-export interface Todo {
-    id: number;
-    name: string;
-    desc: string;
-    completed: boolean;
-}
+import type { Todo, NewTodo, NewUser, User } from "./server/db/types";
+
+export type { Todo, NewTodo, NewUser, User };
