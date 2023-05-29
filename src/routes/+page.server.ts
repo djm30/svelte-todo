@@ -2,14 +2,10 @@ import type { Todo } from "$lib/types.js";
 import { userRepo, todoRepo } from "$lib/server/db";
 
 export async function load({ cookies }) {
-	console.log("here");
 	if (!cookies.get("id")) {
-		const id = await userRepo.create();
-		console.log(id);
+		const { id } = await userRepo.create();
 		cookies.set("id", id.toString());
 	}
-
-	console.log(cookies.get("id"));
 
 	// Return TODOs for this user
 

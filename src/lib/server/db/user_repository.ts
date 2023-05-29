@@ -1,12 +1,19 @@
 import type { UserRepository } from "./types";
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { users } from "./schema";
 
 import db from "./db";
 
 export const userRepository: UserRepository = {
 	create: async () => {
-		return await db.insert(users).values({}).returning().get();
+		// Jank way to get the highest ID instead of just inserting a blank row and letting sqlite autoincrement
+		const highestId = await db
+			.select({ id: sql<number>`MAX(${users.id})` })
+			.from(users)
+			.get();
+		const id = highestId ? highestId.id + 1 : 1;
+
+		return await db.insert(users).values({ id }).returning().get();
 	},
 	find: async (id) => {
 		return await db.select().from(users).where(eq(users.id, id)).get();
