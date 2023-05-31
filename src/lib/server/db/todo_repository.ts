@@ -13,6 +13,9 @@ export const todoRepository: TodoRepository = {
 	all: async () => {
 		return db.select().from(todos).all();
 	},
+	findByUser: async (user_id) => {
+		return db.select().from(todos).where(eq(todos.user_id, user_id)).all();
+	},
 	update: async (id, todo) => {
 		return db.update(todos).set(todo).where(eq(todos.id, id)).returning().get();
 	},

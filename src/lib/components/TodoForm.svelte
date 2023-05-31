@@ -1,6 +1,10 @@
 <script lang="ts">
+	import { enhance } from "$app/forms";
     import type { Todo } from "$lib/types";
+	import type { ActionData } from "../../routes/$types";
 
+    
+    export let form: ActionData;
     export let todos: Todo[]
 
     let todoName = "";
@@ -17,6 +21,12 @@
     } else {
         error = false;
         animationPlayed = false;
+    }
+
+    $: if (form?.success){
+        todoName = "";
+        todoDescription = "";
+    }else{
     }
 
     let animationResetInterval: ReturnType<typeof setInterval>;
@@ -44,14 +54,14 @@
 </script>
 
 <div>
-    <form on:submit|preventDefault={onSubmit}>
+    <form method="post" action="?/add" use:enhance>
         <label>
             <p>Todo Name:</p>
-            <input bind:value={todoName} />
+            <input bind:value={todoName} name="name" />
         </label>
         <label>
             <p>Todo Description:</p>
-            <input bind:value={todoDescription} />
+            <input bind:value={todoDescription} name="desc"/>
         </label>
         <button
             on:animationstart={() => {
